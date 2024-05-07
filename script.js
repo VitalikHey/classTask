@@ -1,12 +1,25 @@
 class ApiRandomService {
-    apiFetch(leftBorder, rightBorder, countNumber) {
-        fetch(`https://www.random.org/integers/?num=${countNumber}&min=${leftBorder}&max=${rightBorder}&col=1&base=10&format=plain&rnd=new`)
-            .then(response => response.text())
-            .then(data => {
-                alert(data)
-            })
+    // apiFetch(leftBorder, rightBorder, countNumber) {
+    //     fetch(`https://www.random.org/integers/?num=${countNumber}&min=${leftBorder}&max=${rightBorder}&col=1&base=10&format=plain&rnd=new`)
+    //         .then(response => response.text())
+    //         .then(data => {
+    //             alert(data)
+    //         })
+    //
+    // }
 
+    // Не использую then, делаю асинхронную функцию, использую ключевое слово await для ожидания выполнения действия,
+    // try-catch для ловли ошибок
+    async apiFetch(leftBoard, rightBoard, countNumber) {
+        try {
+            let response = await fetch(`https://www.random.org/integers/?num=${countNumber}&min=${leftBorder}&max=${rightBorder}&col=1&base=10&format=plain&rnd=new`)
+            response = await response.text()
+            alert(response)
+        } catch (error) {
+            console.log(error)
+        }
     }
+
 }
 
 class RandomService {
