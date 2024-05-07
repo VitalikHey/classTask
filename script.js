@@ -14,7 +14,7 @@ class ApiRandomService {
             return ("Этот возврат нужен для того чтобы функция не возвращала undefined")
         } catch (error) {
             console.error(error)
-            return (404)
+            return (0)
         }
     }
 }
