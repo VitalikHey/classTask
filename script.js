@@ -1,31 +1,30 @@
+// Не использую then, делаю асинхронную функцию, использую ключевое слово await для ожидания выполнения действия,
+// try-catch для ловли ошибок
 class ApiRandomService {
-    // apiFetch(leftBorder, rightBorder, countNumber) {
-    //     fetch(`https://www.random.org/integers/?num=${countNumber}&min=${leftBorder}&max=${rightBorder}&col=1&base=10&format=plain&rnd=new`)
-    //         .then(response => response.text())
-    //         .then(data => {
-    //             alert(data)
-    //         })
-    //
-    // }
+    constructor() {
+        this._API = "https://www.random.org/integers/";
+    }
 
-    // Не использую then, делаю асинхронную функцию, использую ключевое слово await для ожидания выполнения действия,
-    // try-catch для ловли ошибок
-    async apiFetch(leftBoard, rightBoard, countNumber) {
+    get API() {
+        return this._API
+    }
+
+    async apiFetch(leftBorder, rightBorder, countNumber) {
         try {
-            let response = await fetch(`https://www.random.org/integers/?num=${countNumber}&min=${leftBorder}&max=${rightBorder}&col=1&base=10&format=plain&rnd=new`)
+            let response = await fetch(`${this._API}?num=${countNumber}&min=${leftBorder}&max=${rightBorder}&col=1&base=10&format=plain&rnd=new`)
             response = await response.text()
             alert(response)
         } catch (error) {
             console.log(error)
         }
     }
-
 }
 
-// Призадумался и сам не понял, зачем создавал новый инстант
 class RandomService {
     generateRandomNumber(leftBorder, rightBorder, countNumber) {
-        ApiRandomService.apiFetch(leftBorder, rightBorder, countNumber)
+        // Без создания экземпляра не работает и выдаёт ошибку
+        const exemplar = new ApiRandomService()
+        exemplar.apiFetch(leftBorder, rightBorder, countNumber)
     }
 }
 
