@@ -8,13 +8,18 @@ class ApiRandomService {
             let response = await fetch(`${this.#API}?num=${countNumber}&min=${leftBorder}&max=${rightBorder}&col=1&base=10&format=plain&rnd=new`)
             response = await response.text()
             alert(response)
+
+            // Понимаю, что способ так себе. До чего-то более умного я пока не додумался
+
+            return ("Этот возврат нужен для того чтобы функция не возвращала undefined")
         } catch (error) {
-            console.log(error)
+            console.error(error)
+            return ("Этот возврат нужен для того чтобы функция не возвращала undefined")
         }
     }
 }
 
-class RandomService extends ApiRandomService{
+class RandomService extends ApiRandomService {
     generateRandomNumber(leftBorder, rightBorder, countNumber) {
         this.apiFetch(leftBorder, rightBorder, countNumber)
     }
