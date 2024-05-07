@@ -9,12 +9,10 @@ class ApiRandomService {
             response = await response.text()
             alert(response)
 
-            // Понимаю, что способ так себе. До чего-то более умного я пока не додумался
-
-            return ("Этот возврат нужен для того чтобы функция не возвращала undefined")
+            return (1)
         } catch (error) {
             console.error(error)
-            return (0)
+            return (leftBorder)
         }
     }
 }
