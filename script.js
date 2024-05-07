@@ -1,33 +1,36 @@
-// Не использую then, делаю асинхронную функцию, использую ключевое слово await для ожидания выполнения действия,
-// try-catch для ловли ошибок
 class ApiRandomService {
-    #API = "https://www.random.org/integers/"
+    #API = "https://www.random.org/integers/";
 
-    async apiFetch(leftBorder, rightBorder, countNumber) {
+    async apiFetch(leftBorder, rightBorder) {
         try {
-            let response = await fetch(`${this.#API}?num=${countNumber}&min=${leftBorder}&max=${rightBorder}&col=1&base=10&format=plain&rnd=new`)
-            response = await response.text()
-            alert(response)
-
-            return (1)
+            let response = await fetch(`${this.#API}?num=1&min=${leftBorder}&max=${rightBorder}&col=1&base=10&format=plain&rnd=new`);
+            let data = await response.text();
+            return parseInt(data);
         } catch (error) {
-            console.error(error)
-            return (leftBorder)
+            console.error(error);
+            return leftBorder;
         }
     }
 }
 
 class RandomService extends ApiRandomService {
-    generateRandomNumber(leftBorder, rightBorder, countNumber) {
-        this.apiFetch(leftBorder, rightBorder, countNumber)
+    async generateRandomNumber(leftBorder, rightBorder) {
+        return await this.apiFetch(leftBorder, rightBorder);
     }
 }
 
-let leftBorder = prompt("Введите минимально возмножное число")
-let rightBorder = prompt("Введите максимально возможное число")
-let countNumber = prompt("Введите количество генерируемых чисел")
+// Убрал prompt чтобы быстрее тестировать
+let leftBorder = 10
+let rightBorder = 20
 
-const test = new RandomService()
+const test = new RandomService();
 
-test.generateRandomNumber(leftBorder, rightBorder, countNumber)
+async function fillNum() {
+    return await test.generateRandomNumber(leftBorder, rightBorder);
+}
 
+let num;
+fillNum().then(result => {
+    num = result;
+    console.log(num)
+});
