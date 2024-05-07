@@ -22,10 +22,10 @@ class ApiRandomService {
 
 }
 
+// Призадумался и сам не понял, зачем создавал новый инстант
 class RandomService {
-    generateRandomNumber(leftBorder, rightBorder) {
-        let apiClass = new ApiRandomService()
-        apiClass.apiFetch(leftBorder, rightBorder, countNumber)
+    generateRandomNumber(leftBorder, rightBorder, countNumber) {
+        ApiRandomService.apiFetch(leftBorder, rightBorder, countNumber)
     }
 }
 
