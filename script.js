@@ -11,10 +11,10 @@ class ApiRandomService {
 
             // Понимаю, что способ так себе. До чего-то более умного я пока не додумался
 
-            return ("Этот возврат нужен для того чтобы функция не возвращала undefined")
+            return (404)
         } catch (error) {
             console.error(error)
-            return ("Этот возврат нужен для того чтобы функция не возвращала undefined")
+            return (404)
         }
     }
 }
