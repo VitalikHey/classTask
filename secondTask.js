@@ -1,12 +1,10 @@
 function freezeDecorator(variable) {
-    if (typeof (variable) === "object") {
+    if (typeof variable === "object") {
         Object.freeze(variable)
         for (let key in variable) {
-            if (typeof variable[key] === "object") {
                 freezeDecorator(variable[key])
             }
         }
-    }
     return variable;
 }
 
