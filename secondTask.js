@@ -1,9 +1,9 @@
 function freezeDecorator(variable) {
     if (typeof (variable) === "object") {
         Object.freeze(variable)
-        for(let key in variable) {
-            if(variable.hasOwnProperty(key) === true) {
-                Object.freeze(variable[key])
+        for (let key in variable) {
+            if (typeof variable[key] === "object") {
+                freezeDecorator(variable[key])
             }
         }
     }
