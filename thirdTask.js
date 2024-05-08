@@ -1,21 +1,16 @@
-function isEqual(firstObj, secondObj) {
-    if (typeof firstObj !== "object" || typeof secondObj !== "object") {
-        return firstObj === secondObj;
+function isEqual(firstObject, secondObject) {
+    if (typeof firstObject !== "object" || typeof secondObject !== "object") {
+        return firstObject === secondObject;
     }
 
-    const firstKeys = Object.keys(firstObj)
-    const secondKeys = Object.keys(secondObj)
+    const firstKeysArray = Object.keys(firstObject)
+    const secondKeysArray = Object.keys(secondObject)
 
-    if (firstKeys.length !== secondKeys.length) {
+    if (firstKeysArray.length !== secondKeysArray.length) {
         return false;
     }
 
-    for (let key of firstKeys) {
-        if(!isEqual(firstObj[key], secondObj[key])) {
-            return false;
-        }
-    }
-    return true;
+    return secondKeysArray.every(key => isEqual(firstObject[key], secondObject[key]))
 }
 
 const firstObj = {
